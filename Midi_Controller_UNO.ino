@@ -35,7 +35,7 @@ bool b_7_old = HIGH;
 bool b_8_old = HIGH;
 
 //***************************************** Potentiometers *********************************************************
-int pot_cc[]={0,1,56,57,58,59,60,61,62,63,64,65,67,68,69,70};// MIDI CC values for the 16 potentiometers.
+int pot_cc[] = {0,1,56,57,58,59,60,61,62,63,64,65,67,68,69,70};// MIDI CC values for the 16 potentiometers.
 
 int pot_old_value[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 int pot_new_value[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
@@ -78,7 +78,7 @@ void loop() {
 
 multiplexer_1();
 
-for(int i=0; i<16 ; i++){	
+for(int i=0; i<16; i++){	
 	
 	if(pot_new_value[i] - pot_old_value[i] >= 10 || pot_old_value[i] - pot_new_value[i] >= 10){
 	
