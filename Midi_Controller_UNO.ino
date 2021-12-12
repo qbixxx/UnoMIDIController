@@ -2,12 +2,10 @@
 // Email: valentinccomp@gmail.com
 // Last revision: September 23, 2021.
 
-#include <MIDI.h>
+#include <MIDI.h> // FortySevenEffects MIDI Library.
 #define input 0
 
 MIDI_CREATE_DEFAULT_INSTANCE();
-
-void setup() {
 
 //************************************ Multiplexer's 4 Bit Address Bus ********************************************
 int pin_0_bin = 8;
@@ -39,6 +37,8 @@ int pot_cc[] = {0,1,56,57,58,59,60,61,62,63,64,65,67,68,69,70};// MIDI CC values
 
 int pot_old_value[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 int pot_new_value[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+
+void setup() {
 
 //******************************************* Pin Modes *************************************************************
 pinMode(input,INPUT); // Analog input.
