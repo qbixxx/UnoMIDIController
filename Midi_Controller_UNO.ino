@@ -8,10 +8,10 @@
 MIDI_CREATE_DEFAULT_INSTANCE();
 
 //************************************ Multiplexer's 4 Bit Address Bus ********************************************
-int pin_0_bin = 8;
-int pin_1_bin = 9;
-int pin_2_bin = 10;
-int pin_3_bin = 11;
+int pin_0_mux = 8;
+int pin_1_mux = 9;
+int pin_2_mux = 10;
+int pin_3_mux = 11;
 
 //************************************************* Buttons ********************************************************
 int b_1 = 2;
@@ -43,10 +43,10 @@ void setup() {
 //******************************************* Pin Modes *************************************************************
 pinMode(input,INPUT); // Analog input.
 
-pinMode(pin_0_bin, OUTPUT);// Multiplexer's address: Bit 0
-pinMode(pin_1_bin, OUTPUT);// Multiplexer's address: Bit 1
-pinMode(pin_2_bin, OUTPUT);// Multiplexer's address: Bit 2
-pinMode(pin_3_bin, OUTPUT);// Multiplexer's address: Bit 3
+pinMode(pin_0_mux, OUTPUT);// Multiplexer's address: Bit 0
+pinMode(pin_1_mux, OUTPUT);// Multiplexer's address: Bit 1
+pinMode(pin_2_mux, OUTPUT);// Multiplexer's address: Bit 2
+pinMode(pin_3_mux, OUTPUT);// Multiplexer's address: Bit 3
 
 pinMode(b_1, INPUT_PULLUP);// Buttons 
 pinMode(b_2, INPUT_PULLUP);
@@ -65,10 +65,10 @@ void multiplexer_1() {
 
 	for (int i = 0; i < 16; i++){
   
-		digitalWrite(pin_0_bin, HIGH && (i & B00000001));
-		digitalWrite(pin_1_bin, HIGH && (i & B00000010));
-		digitalWrite(pin_2_bin, HIGH && (i & B00000100));
-		digitalWrite(pin_3_bin, HIGH && (i & B00001000));
+		digitalWrite(pin_0_mux, HIGH && (i & B00000001));
+		digitalWrite(pin_1_mux, HIGH && (i & B00000010));
+		digitalWrite(pin_2_mux, HIGH && (i & B00000100));
+		digitalWrite(pin_3_mux, HIGH && (i & B00001000));
 	
 		pot_new_value[i] = analogRead(input);
 	}
