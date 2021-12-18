@@ -71,6 +71,18 @@ void multiplexer_1() {
 		digitalWrite(pin_3_mux, HIGH && (i & B00001000));
 	
 		pot_new_value[i] = analogRead(input);
+		
+		
+   /*
+    if(pot_new_value[i] - pot_old_value[i] >= 10 || pot_old_value[i] - pot_new_value[i] >= 10){
+  
+    pot_old_value[i] = pot_new_value[i];
+    pot_new_value[i] = (map(pot_new_value[i], 0, 1023, 0, 127));
+    pot_new_value[i] = (constrain(pot_new_value[i], 0, 127));
+  
+    MIDI.sendControlChange(pot_cc[i], pot_new_value[i], 1);
+  }
+   */
 	}
 }
 
