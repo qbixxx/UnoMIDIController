@@ -41,7 +41,6 @@ int pot_new_value[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 void setup() {
 
 //******************************************* Pin Modes *************************************************************
-pinMode(input,INPUT); // Analog input.
 
 pinMode(pin_0_mux, OUTPUT);// Multiplexer's address: Bit 0
 pinMode(pin_1_mux, OUTPUT);// Multiplexer's address: Bit 1
