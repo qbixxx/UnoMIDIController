@@ -3,6 +3,6 @@ MIDI controller based on the Arduino Uno development board and the CD4067 16 cha
 
 Potentiometer values: 500 Kohm (Linear)
 
-SCHEMATIC.- (PDF): [output.pdf](https://github.com/SSMTBPSSCNTPGTS/Arduino-Uno-MIDI-Controller/files/7755446/output.pdf)
+SCHEMATIC.- (PDF): [output.pdf](https://github.com/SSMTBPSSCNTPGTS/Arduino-Uno-MIDI-Controller/files/7755505/output.pdf)
 
-![output_page-0001](https://user-images.githubusercontent.com/89623002/146934580-4afe86cc-fde7-480f-923f-7cbf1f07d443.jpg)
+![output_page-0001](https://user-images.githubusercontent.com/89623002/146935323-eefda356-657d-44a9-914d-c8104fda27a6.jpg)
