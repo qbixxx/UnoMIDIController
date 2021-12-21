@@ -32,6 +32,15 @@ bool b_6_old = HIGH;
 bool b_7_old = HIGH;
 bool b_8_old = HIGH;
 
+bool b_1_new;
+bool b_2_new;
+bool b_3_new;
+bool b_4_new;
+bool b_5_new;
+bool b_6_new;
+bool b_7_new;
+bool b_8_new;
+
 //***************************************** Potentiometers *********************************************************
 int pot_cc[] = {0,1,56,57,58,59,60,61,62,63,64,65,67,68,69,70};// MIDI CC values for the 16 potentiometers.
 
@@ -72,44 +81,31 @@ void multiplexer_1() {
 		pot_new_value[i] = analogRead(input);
 		
 		
-   /*
-    if(pot_new_value[i] - pot_old_value[i] >= 10 || pot_old_value[i] - pot_new_value[i] >= 10){
+   
+		if(pot_new_value[i] - pot_old_value[i] >= 10 || pot_old_value[i] - pot_new_value[i] >= 10){
   
-    pot_old_value[i] = pot_new_value[i];
-    pot_new_value[i] = (map(pot_new_value[i], 0, 1023, 0, 127));
-    pot_new_value[i] = (constrain(pot_new_value[i], 0, 127));
+			pot_old_value[i] = pot_new_value[i];
+			pot_new_value[i] = (map(pot_new_value[i], 0, 1023, 0, 127));
+			pot_new_value[i] = (constrain(pot_new_value[i], 0, 127));
   
-    MIDI.sendControlChange(pot_cc[i], pot_new_value[i], 1);
-  }
-   */
+			MIDI.sendControlChange(pot_cc[i], pot_new_value[i], 1);
+		}
+   
 	}
 }
 
 void loop() {
 
 multiplexer_1();
-
-for(int i=0; i<16; i++){	
-	
-	if(pot_new_value[i] - pot_old_value[i] >= 10 || pot_old_value[i] - pot_new_value[i] >= 10){
-	
-		pot_old_value[i] = pot_new_value[i];
-		pot_new_value[i] = (map(pot_new_value[i], 0, 1023, 0, 127));
-		pot_new_value[i] = (constrain(pot_new_value[i], 0, 127));
-	
-		MIDI.sendControlChange(pot_cc[i], pot_new_value[i], 1);
-	}
-}
-
  
-bool b_1_new = digitalRead(b_1);
-bool b_2_new = digitalRead(b_2);
-bool b_3_new = digitalRead(b_3);
-bool b_4_new = digitalRead(b_4);
-bool b_5_new = digitalRead(b_5);
-bool b_6_new = digitalRead(b_6);
-bool b_7_new = digitalRead(b_7);
-bool b_8_new = digitalRead(b_8);
+b_1_new = digitalRead(b_1);
+b_2_new = digitalRead(b_2);
+b_3_new = digitalRead(b_3);
+b_4_new = digitalRead(b_4);
+b_5_new = digitalRead(b_5);
+b_6_new = digitalRead(b_6);
+b_7_new = digitalRead(b_7);
+b_8_new = digitalRead(b_8);
  
 if(b_1_new != b_1_old){
 	
