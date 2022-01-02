@@ -10,3 +10,7 @@ SCHEMATIC.- (PDF): [output.pdf](https://github.com/SSMTBPSSCNTPGTS/Arduino-Uno-M
 
 https://user-images.githubusercontent.com/89623002/147885847-e971e248-e7a7-4c77-9603-ff16ea4fe2ea.mp4
 
+
+
+https://user-images.githubusercontent.com/89623002/147886057-9e963b5f-dcb2-49f2-9e51-6054598d2537.mp4
+
