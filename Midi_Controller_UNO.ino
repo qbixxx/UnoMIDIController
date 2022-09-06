@@ -63,8 +63,6 @@ void multiplexer_1() {
 		digitalWrite(11, HIGH && (i & B00001000));
 	
 		pot_new_value[i] = analogRead(input);
-		
-		
    
 		if(pot_new_value[i] - pot_old_value[i] >= 10 || pot_old_value[i] - pot_new_value[i] >= 10){
   
@@ -74,7 +72,6 @@ void multiplexer_1() {
   
 			MIDI.sendControlChange(pot_cc[i], pot_new_value[i], 1);
 		}
-   
 	}
 }
 
@@ -99,8 +96,8 @@ if(b_1_new != b_1_old){
 	else{
 		MIDI.sendNoteOff(60, 0, 1); // Note C5 Off - MIDI Value: 0 - MIDI Channel: 1
 	}
-	
 	b_1_old = b_1_new;
+	
 }
 
 if(b_2_new != b_2_old){
