@@ -1,27 +1,11 @@
-// Author: Valentin Cedeño Compagnucci
+// Author: Valentin Cedeño
 // Email: valentinccomp@gmail.com
-// Last revision: December 21, 2021.
+// Last revision: Sept. 6, 2022.
 
 #include <MIDI.h> // FortySevenEffects MIDI Library.
 #define input 0
 
 MIDI_CREATE_DEFAULT_INSTANCE();
-
-//************************************ Multiplexer's 4 Bit Address Bus ********************************************
-int pin_0_mux = 8;
-int pin_1_mux = 9;
-int pin_2_mux = 10;
-int pin_3_mux = 11;
-
-//************************************************* Buttons ********************************************************
-int b_1 = 2;
-int b_2 = 4;
-int b_3 = 6;
-int b_4 = 12;
-int b_5 = 3;
-int b_6 = 5;
-int b_7 = 7;
-int b_8 = 13;
 
 bool b_1_old = HIGH;
 bool b_2_old = HIGH;
@@ -41,7 +25,7 @@ bool b_6_new;
 bool b_7_new;
 bool b_8_new;
 
-//***************************************** Potentiometers *********************************************************
+// Potentiometers
 int pot_cc[] = {0,1,56,57,58,59,60,61,62,63,64,65,67,68,69,70};// MIDI CC values for the 16 potentiometers.
 
 int pot_old_value[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
@@ -49,21 +33,21 @@ int pot_new_value[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
 void setup() {
 
-//******************************************* Pin Modes *************************************************************
+// Pin Modes
 
-pinMode(pin_0_mux, OUTPUT);// Multiplexer's address: Bit 0
-pinMode(pin_1_mux, OUTPUT);// Multiplexer's address: Bit 1
-pinMode(pin_2_mux, OUTPUT);// Multiplexer's address: Bit 2
-pinMode(pin_3_mux, OUTPUT);// Multiplexer's address: Bit 3
+pinMode(8, OUTPUT);// Multiplexer's address: Bit 0
+pinMode(9, OUTPUT);// Multiplexer's address: Bit 1
+pinMode(10, OUTPUT);// Multiplexer's address: Bit 2
+pinMode(11, OUTPUT);// Multiplexer's address: Bit 3
 
-pinMode(b_1, INPUT_PULLUP);// Buttons 
-pinMode(b_2, INPUT_PULLUP);
-pinMode(b_3, INPUT_PULLUP);
-pinMode(b_4, INPUT_PULLUP);
-pinMode(b_5, INPUT_PULLUP);
-pinMode(b_6, INPUT_PULLUP);
-pinMode(b_7, INPUT_PULLUP);
-pinMode(b_8, INPUT_PULLUP);
+pinMode(2, INPUT_PULLUP);// Buttons 
+pinMode(4, INPUT_PULLUP);
+pinMode(6, INPUT_PULLUP);
+pinMode(12, INPUT_PULLUP);
+pinMode(3, INPUT_PULLUP);
+pinMode(5, INPUT_PULLUP);
+pinMode(7, INPUT_PULLUP);
+pinMode(13, INPUT_PULLUP);
 
 MIDI.begin(); // *
 
@@ -73,10 +57,10 @@ void multiplexer_1() {
 
 	for (int i = 0; i < 16; i++){
   
-		digitalWrite(pin_0_mux, HIGH && (i & B00000001));
-		digitalWrite(pin_1_mux, HIGH && (i & B00000010));
-		digitalWrite(pin_2_mux, HIGH && (i & B00000100));
-		digitalWrite(pin_3_mux, HIGH && (i & B00001000));
+		digitalWrite(8, HIGH && (i & B00000001));
+		digitalWrite(9, HIGH && (i & B00000010));
+		digitalWrite(10, HIGH && (i & B00000100));
+		digitalWrite(11, HIGH && (i & B00001000));
 	
 		pot_new_value[i] = analogRead(input);
 		
