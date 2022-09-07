@@ -79,14 +79,14 @@ void loop() {
 
 multiplexer_1();
  
-b_1_new = digitalRead(b_1);
-b_2_new = digitalRead(b_2);
-b_3_new = digitalRead(b_3);
-b_4_new = digitalRead(b_4);
-b_5_new = digitalRead(b_5);
-b_6_new = digitalRead(b_6);
-b_7_new = digitalRead(b_7);
-b_8_new = digitalRead(b_8);
+b_1_new = digitalRead(2);
+b_2_new = digitalRead(4);
+b_3_new = digitalRead(6);
+b_4_new = digitalRead(12);
+b_5_new = digitalRead(3);
+b_6_new = digitalRead(5);
+b_7_new = digitalRead(7);
+b_8_new = digitalRead(13);
  
 if(b_1_new != b_1_old){
 	
