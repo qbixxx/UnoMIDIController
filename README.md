@@ -1,5 +1,7 @@
 # Arduino-Uno-MIDI-Controller
-MIDI controller based on the Arduino Uno development board and the CD4067 16 channel analog multiplexer. Still in progress.
+MIDI controller based on the Arduino Uno development board and the CD4067 16 channel analog multiplexer. The device can be configured to be plug and play by creating a MIDI Device script for some DAWs such as Ableton for instant recognition.
+
+Still in progress.
 
 Potentiometer values: 500 Kohm (Linear)
 
