@@ -91,10 +91,10 @@ b_8_new = digitalRead(13);
 if(b_1_new != b_1_old){
 	
 	if(b_1_old == LOW){
-		MIDI.sendNoteOn(60, 127, 1); // Note C5 On - MIDI Value: 127 - MIDI Channel: 1
+		MIDI.sendNoteOn(60, 127, 1); // Note C5 On - Velocity Value: 127 - MIDI Channel: 1
 	}
 	else{
-		MIDI.sendNoteOff(60, 0, 1); // Note C5 Off - MIDI Value: 0 - MIDI Channel: 1
+		MIDI.sendNoteOff(60, 0, 1); // Note C5 Off - Velocity Value: 0 - MIDI Channel: 1
 	}
 	b_1_old = b_1_new;
 	
@@ -103,10 +103,10 @@ if(b_1_new != b_1_old){
 if(b_2_new != b_2_old){
 	
 	if(b_2_new == LOW){
-		MIDI.sendNoteOn(62, 127, 1);// Note D5 On - MIDI Value: 127 - MIDI Channel: 1
+		MIDI.sendNoteOn(62, 127, 1);// Note D5 On - Velocity Value: 127 - MIDI Channel: 1
 	}
 	else{
-		MIDI.sendNoteOff(62, 0, 1);// Note D5 Off - MIDI Value: 0 - MIDI Channel: 1
+		MIDI.sendNoteOff(62, 0, 1);// Note D5 Off - Velocity Value: 0 - MIDI Channel: 1
 	}
 	
 	b_2_old = b_2_new;
@@ -115,10 +115,10 @@ if(b_2_new != b_2_old){
 if(b_3_new != b_3_old){
 	
 	if(b_3_new == LOW){
-		MIDI.sendNoteOn(64, 127, 1);// Note E5 On - MIDI Value: 127 - MIDI Channel: 1
+		MIDI.sendNoteOn(64, 127, 1);// Note E5 On - Velocity Value: 127 - MIDI Channel: 1
 	}
 	else{
-		MIDI.sendNoteOff(64, 0, 1);// Note E5 Off - MIDI Value: 0 - MIDI Channel: 1
+		MIDI.sendNoteOff(64, 0, 1);// Note E5 Off - Velocity Value: 0 - MIDI Channel: 1
 	}
 	
 	b_3_old = b_3_new;
@@ -127,10 +127,10 @@ if(b_3_new != b_3_old){
 if(b_4_new != b_4_old){
 	
 	if(b_4_new == LOW){
-		MIDI.sendNoteOn(65, 127, 1);// Note F5 On - MIDI Value: 127 - MIDI Channel: 1
+		MIDI.sendNoteOn(65, 127, 1);// Note F5 On - Velocity Value: 127 - MIDI Channel: 1
 	}
 	else{
-		MIDI.sendNoteOff(65, 0, 1);// Note F5 Off - MIDI Value: 0 - MIDI Channel: 1
+		MIDI.sendNoteOff(65, 0, 1);// Note F5 Off - Velocity Value: 0 - MIDI Channel: 1
 	}
 	
 	b_4_old = b_4_new;
@@ -139,10 +139,10 @@ if(b_4_new != b_4_old){
 if(b_5_new != b_5_old){
 	if(b_5_new == LOW){
 		
-		MIDI.sendNoteOn(67, 127, 1);// Note G5 On - MIDI Value: 127 - MIDI Channel: 1
+		MIDI.sendNoteOn(67, 127, 1);// Note G5 On - Velocity Value: 127 - MIDI Channel: 1
 	}
 	else{
-		MIDI.sendNoteOff(67, 0, 1);// Note G5 Off - MIDI Value: 0 - MIDI Channel: 1
+		MIDI.sendNoteOff(67, 0, 1);// Note G5 Off - Velocity Value: 0 - MIDI Channel: 1
 	}
 	
 	b_5_old = b_5_new;
@@ -151,10 +151,10 @@ if(b_5_new != b_5_old){
 if(b_6_new != b_6_old){
 	if(b_6_new == LOW){
 			
-		MIDI.sendNoteOn(69, 127, 1);// Note A5 On - MIDI Value: 127 - MIDI Channel: 1
+		MIDI.sendNoteOn(69, 127, 1);// Note A5 On - Velocity Value: 127 - MIDI Channel: 1
 	}
 	else{
-		MIDI.sendNoteOff(69, 0, 1);// Note A5 Off - MIDI Value: 0 - MIDI Channel: 1
+		MIDI.sendNoteOff(69, 0, 1);// Note A5 Off - Velocity Value: 0 - MIDI Channel: 1
 	}
 	
 	b_6_old = b_6_new;
@@ -163,10 +163,10 @@ if(b_6_new != b_6_old){
 if(b_7_new != b_7_old){
 	if(b_7_new == LOW){
 		
-		MIDI.sendNoteOn(71, 127, 1);// Note B5 On - MIDI Value: 127 - MIDI Channel: 1
+		MIDI.sendNoteOn(71, 127, 1);// Note B5 On - Velocity Value: 127 - MIDI Channel: 1
 	}
 	else{
-		MIDI.sendNoteOff(71, 0, 1);// Note B5 Off - MIDI Value: 0 - MIDI Channel: 1
+		MIDI.sendNoteOff(71, 0, 1);// Note B5 Off - Velocity Value: 0 - MIDI Channel: 1
 	}
 	
 	b_7_old = b_7_new;
@@ -175,10 +175,10 @@ if(b_7_new != b_7_old){
 if(b_8_new != b_8_old){
 	if(b_8_new == LOW){
 		
-		MIDI.sendNoteOn(72, 127, 1);// Note C6 On - MIDI Value: 127 - MIDI Channel: 1
+		MIDI.sendNoteOn(72, 127, 1);// Note C6 On - Velocity Value: 127 - MIDI Channel: 1
 	}
 	else{
-		MIDI.sendNoteOff(72, 0, 1);// Note C6 On - MIDI Value: 0 - MIDI Channel: 1
+		MIDI.sendNoteOff(72, 0, 1);// Note C6 On - Velocity Value: 0 - MIDI Channel: 1
 	}
 	
 	b_8_old = b_8_new;
