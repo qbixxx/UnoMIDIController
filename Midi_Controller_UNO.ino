@@ -1,11 +1,7 @@
-// Author: Valentin Cedeño
-// Email: valentinccomp@gmail.com
-// Last revision: Sept. 6, 2022.
-
 #include <MIDI.h> // FortySevenEffects MIDI Library.
 #define input 0
 
-MIDI_CREATE_DEFAULT_INSTANCE();
+MIDI_CREATE_DEFAULT_INSTANC();
 
 bool b_1_old = HIGH;
 bool b_2_old = HIGH;
