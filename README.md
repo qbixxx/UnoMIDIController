@@ -1,6 +1,8 @@
 # Arduino-Uno-MIDI-Controller
 MIDI controller based on the Arduino Uno development board and the CD4067 16 channel analog multiplexer. The device can be configured to be plug and play by creating a MIDI Device script for some DAWs such as Ableton for instant recognition.
 
+What makes this project special is that it uses multiplexing for the analog input signal reading. In this codebase, there are 16 potentiometers that are being scanned by only one analog input pin of the six available. This means that in theory you could connect a 4067 multiplexer to all the analog input pins, allowing you to read a total of 96 potentiometers simultaneously.
+
 Dependencies:
 -  [FortySevenEffects MIDI Library](https://github.com/FortySevenEffects/arduino_midi_library)
 -  To make the UNO a MIDI class compliant device, use [mocolufa](https://github.com/kuwatay/mocolufa) (Only for 16u2 UNO boards)
