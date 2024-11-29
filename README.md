@@ -3,8 +3,7 @@ MIDI controller based on the Arduino Uno development board and the CD4067 16 cha
 
 Dependencies:
 -  [FortySevenEffects MIDI Library](https://github.com/FortySevenEffects/arduino_midi_library)
-
-Still in progress.
+-  To make the UNO a MIDI class compliant device, use [mocolufa](https://github.com/kuwatay/mocolufa) (Only for 16u2 UNO boards)
 
 Potentiometer values: 500 Kohm (Linear)
 
