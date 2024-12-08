@@ -1,7 +1,7 @@
 #include <MIDI.h> // FortySevenEffects MIDI Library.
 #define input 0
 
-MIDI_CREATE_DEFAULT_INSTANC();
+MIDI_CREATE_DEFAULT_INSTANCE();
 
 bool b_1_old = HIGH;
 bool b_2_old = HIGH;
