@@ -1,7 +1,11 @@
 # Arduino UNO MIDI Controller
 MIDI controller based on the Arduino Uno development board and the CD4067 16 channel analog multiplexer. The device can be configured to be plug and play by creating a MIDI Device script for some DAWs such as Ableton for instant recognition.
 
-What makes this project special is that it uses [time-division multiplexing](https://en.wikipedia.org/wiki/Multiplexing#Time-division_multiplexing) for the analog input signal reading. In this codebase, there are 16 potentiometers that are being scanned by only one analog input pin of the six available. This means that in theory you could connect a 4067 multiplexer to all the analog input pins, allowing you to read a total of 96 potentiometers simultaneously.
+What makes this project special is that it uses [time-division multiplexing](https://en.wikipedia.org/wiki/Multiplexing#Time-division_multiplexing) for the analog input signal reading. In this codebase, there are 16 potentiometers that are being scanned by only one analog input pin of the six available. Arduino boards, including the Arduino Uno, do not support true concurrency. This means that they can only read one analog input at a time. If you wanted to connect 16 potentiometers directly, you would need 16 separate analog pins — but the Arduino Uno only has 6 analog input pins.
+
+To overcome this limitation, this project uses a CD4067 multiplexer. Instead of dedicating one pin per potentiometer, the multiplexer allows all 16 potentiometers to be read using a single analog input pin. This is achieved through time-division multiplexing, where the Arduino rapidly switches between the 16 inputs, reading them one-by-one. Since the switching is fast, it appears as if all potentiometers are being read at once.
+
+This approach allows for efficient use of limited hardware resources while enabling support for a large number of input devices. In fact, by connecting a multiplexer to each of the 6 analog input pins of the Arduino, you could theoretically read up to 96 potentiometers simultaneously.
 
 ## Dependencies:
 -  [FortySevenEffects MIDI Library](https://github.com/FortySevenEffects/arduino_midi_library)
