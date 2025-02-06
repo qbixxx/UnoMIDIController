@@ -14,8 +14,9 @@ This approach allows for efficient use of limited hardware resources while enabl
 Potentiometer values: 500 Kohm (Linear)
 
 ## SCHEMATIC.- (PDF): [schematic.pdf](https://github.com/SSMTBPSSCNTPGTS/Arduino-Uno-MIDI-Controller/files/7755505/output.pdf)
-
 ![output_page-0001](https://user-images.githubusercontent.com/89623002/146935323-eefda356-657d-44a9-914d-c8104fda27a6.jpg)
+
+## PCB.- (PDF scan): [PCB.pdf](https://github.com/user-attachments/files/18695484/PCB.pdf)
 
 
 https://user-images.githubusercontent.com/89623002/147885847-e971e248-e7a7-4c77-9603-ff16ea4fe2ea.mp4
