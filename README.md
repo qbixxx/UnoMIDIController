@@ -7,16 +7,18 @@ To overcome this limitation, this project uses a CD4067 multiplexer. Instead of 
 
 This approach allows for efficient use of limited hardware resources while enabling support for a large number of input devices. In fact, by connecting a multiplexer to each of the 6 analog input pins of the Arduino, you could theoretically read up to 96 potentiometers simultaneously.
 
+* Potentiometer values: 500 Kohm (Linear)
+
 ## Dependencies:
 -  [FortySevenEffects MIDI Library](https://github.com/FortySevenEffects/arduino_midi_library)
 -  To make the UNO a MIDI class compliant device, use [mocolufa](https://github.com/kuwatay/mocolufa) (Only for 16u2 UNO boards)
 
-Potentiometer values: 500 Kohm (Linear)
 
 ## SCHEMATIC.- (PDF): [schematic.pdf](https://github.com/SSMTBPSSCNTPGTS/Arduino-Uno-MIDI-Controller/files/7755505/output.pdf)
 ![output_page-0001](https://user-images.githubusercontent.com/89623002/146935323-eefda356-657d-44a9-914d-c8104fda27a6.jpg)
 
-## PCB.- (PDF scan): [PCB.pdf](https://github.com/user-attachments/files/18695484/PCB.pdf)
+## PCB.- (PDF scan):
+![PCB.pdf](https://github.com/user-attachments/files/18695510/PCB.pdf)
 
 
 https://user-images.githubusercontent.com/89623002/147885847-e971e248-e7a7-4c77-9603-ff16ea4fe2ea.mp4
