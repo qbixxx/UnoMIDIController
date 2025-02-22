@@ -1,183 +1,87 @@
 #include <MIDI.h> // FortySevenEffects MIDI Library.
-#define input 0
+#define MUX_INPUT_PIN 0  // Analog input used for the multiplexer
 
 MIDI_CREATE_DEFAULT_INSTANCE();
 
-bool b_1_old = HIGH;
-bool b_2_old = HIGH;
-bool b_3_old = HIGH;
-bool b_4_old = HIGH;
-bool b_5_old = HIGH;
-bool b_6_old = HIGH;
-bool b_7_old = HIGH;
-bool b_8_old = HIGH;
+// Arrays for button pins and their respective MIDI note numbers
+const byte buttonPins[8]   = {2, 4, 6, 12, 3, 5, 7, 13};
+const byte noteNumbers[8]  = {60, 62, 64, 65, 67, 69, 71, 72};
 
-bool b_1_new;
-bool b_2_new;
-bool b_3_new;
-bool b_4_new;
-bool b_5_new;
-bool b_6_new;
-bool b_7_new;
-bool b_8_new;
+// Old and new states for each button
+bool buttonOld[8] = {HIGH, HIGH, HIGH, HIGH, HIGH, HIGH, HIGH, HIGH};
+bool buttonNew[8];
 
-// Potentiometers
-int pot_cc[] = {0,1,56,57,58,59,60,61,62,63,64,65,67,68,69,70};// MIDI CC values for the 16 potentiometers.
-
-int pot_old_value[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-int pot_new_value[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+// Arrays for potentiometers
+int potCC[16]         = {0, 1, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 67, 68, 69, 70};
+int potOldValue[16]   = {0};
+int potNewValue[16]   = {0};
 
 void setup() {
+  // Set multiplexer address pins as outputs
+  pinMode(8,  OUTPUT);
+  pinMode(9,  OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(11, OUTPUT);
 
-// Pin Modes
+  // Set all button pins as INPUT_PULLUP
+  for (byte i = 0; i < 8; i++) {
+    pinMode(buttonPins[i], INPUT_PULLUP);
+  }
 
-pinMode(8, OUTPUT);// Multiplexer's address: Bit 0
-pinMode(9, OUTPUT);// Multiplexer's address: Bit 1
-pinMode(10, OUTPUT);// Multiplexer's address: Bit 2
-pinMode(11, OUTPUT);// Multiplexer's address: Bit 3
-
-pinMode(2, INPUT_PULLUP);// Buttons 
-pinMode(4, INPUT_PULLUP);
-pinMode(6, INPUT_PULLUP);
-pinMode(12, INPUT_PULLUP);
-pinMode(3, INPUT_PULLUP);
-pinMode(5, INPUT_PULLUP);
-pinMode(7, INPUT_PULLUP);
-pinMode(13, INPUT_PULLUP);
-
-MIDI.begin(); // *
-
+  // Start the MIDI library
+  MIDI.begin();
 }
 
-void multiplexer_1() {
+// Reads the 16-channel multiplexer and sends Control Change messages when values change
+void readMultiplexer() {
+  for (int i = 0; i < 16; i++) {
+    // Select the current multiplexer channel using address pins
+    digitalWrite(8,  (i & B0001) ? HIGH : LOW);
+    digitalWrite(9,  (i & B0010) ? HIGH : LOW);
+    digitalWrite(10, (i & B0100) ? HIGH : LOW);
+    digitalWrite(11, (i & B1000) ? HIGH : LOW);
 
-	for (int i = 0; i < 16; i++){
-  
-		digitalWrite(8, HIGH && (i & B00000001));
-		digitalWrite(9, HIGH && (i & B00000010));
-		digitalWrite(10, HIGH && (i & B00000100));
-		digitalWrite(11, HIGH && (i & B00001000));
-	
-		pot_new_value[i] = analogRead(input);
-   
-		if(pot_new_value[i] - pot_old_value[i] >= 10 || pot_old_value[i] - pot_new_value[i] >= 10){
-  
-			pot_old_value[i] = pot_new_value[i];
-			pot_new_value[i] = (map(pot_new_value[i], 0, 1023, 0, 127));
-			pot_new_value[i] = (constrain(pot_new_value[i], 0, 127));
-  
-			MIDI.sendControlChange(pot_cc[i], pot_new_value[i], 1);
-		}
-	}
+    // Read the analog value from the multiplexer output
+    int rawValue = analogRead(MUX_INPUT_PIN);
+
+    // Check if the value has changed significantly (threshold = 10)
+    if (abs(rawValue - potOldValue[i]) >= 10) {
+      // Update the old value
+      potOldValue[i] = rawValue;
+
+      // Map from [0..1023] to [0..127] and constrain to [0..127]
+      int mappedValue = map(rawValue, 0, 1023, 0, 127);
+      mappedValue = constrain(mappedValue, 0, 127);
+
+      // Send MIDI Control Change
+      MIDI.sendControlChange(potCC[i], mappedValue, 1);
+    }
+  }
+}
+
+// Reads all button states and sends Note On/Off messages upon change
+void readButtons() {
+  for (byte i = 0; i < 8; i++) {
+    // Read the current state of the button
+    buttonNew[i] = digitalRead(buttonPins[i]);
+
+    // Only act if there's a change in state
+    if (buttonNew[i] != buttonOld[i]) {
+      // Ternary operator to send NoteOn if button is LOW, otherwise NoteOff
+      (buttonNew[i] == LOW)
+        ? MIDI.sendNoteOn(noteNumbers[i], 127, 1)
+        : MIDI.sendNoteOff(noteNumbers[i], 0, 1);
+
+      // Update the old state
+      buttonOld[i] = buttonNew[i];
+    }
+  }
 }
 
 void loop() {
+  // Read and process all 16 multiplexer channels (potentiometers)
+  readMultiplexer();
 
-multiplexer_1();
- 
-b_1_new = digitalRead(2);
-b_2_new = digitalRead(4);
-b_3_new = digitalRead(6);
-b_4_new = digitalRead(12);
-b_5_new = digitalRead(3);
-b_6_new = digitalRead(5);
-b_7_new = digitalRead(7);
-b_8_new = digitalRead(13);
- 
-if(b_1_new != b_1_old){
-	
-	if(b_1_old == LOW){
-		MIDI.sendNoteOn(60, 127, 1); // Note C5 On - Velocity Value: 127 - MIDI Channel: 1
-	}
-	else{
-		MIDI.sendNoteOff(60, 0, 1); // Note C5 Off - Velocity Value: 0 - MIDI Channel: 1
-	}
-	b_1_old = b_1_new;
-	
-}
-
-if(b_2_new != b_2_old){
-	
-	if(b_2_new == LOW){
-		MIDI.sendNoteOn(62, 127, 1);// Note D5 On - Velocity Value: 127 - MIDI Channel: 1
-	}
-	else{
-		MIDI.sendNoteOff(62, 0, 1);// Note D5 Off - Velocity Value: 0 - MIDI Channel: 1
-	}
-	
-	b_2_old = b_2_new;
-}
-
-if(b_3_new != b_3_old){
-	
-	if(b_3_new == LOW){
-		MIDI.sendNoteOn(64, 127, 1);// Note E5 On - Velocity Value: 127 - MIDI Channel: 1
-	}
-	else{
-		MIDI.sendNoteOff(64, 0, 1);// Note E5 Off - Velocity Value: 0 - MIDI Channel: 1
-	}
-	
-	b_3_old = b_3_new;
-}
-
-if(b_4_new != b_4_old){
-	
-	if(b_4_new == LOW){
-		MIDI.sendNoteOn(65, 127, 1);// Note F5 On - Velocity Value: 127 - MIDI Channel: 1
-	}
-	else{
-		MIDI.sendNoteOff(65, 0, 1);// Note F5 Off - Velocity Value: 0 - MIDI Channel: 1
-	}
-	
-	b_4_old = b_4_new;
-}
-
-if(b_5_new != b_5_old){
-	if(b_5_new == LOW){
-		
-		MIDI.sendNoteOn(67, 127, 1);// Note G5 On - Velocity Value: 127 - MIDI Channel: 1
-	}
-	else{
-		MIDI.sendNoteOff(67, 0, 1);// Note G5 Off - Velocity Value: 0 - MIDI Channel: 1
-	}
-	
-	b_5_old = b_5_new;
-}
-
-if(b_6_new != b_6_old){
-	if(b_6_new == LOW){
-			
-		MIDI.sendNoteOn(69, 127, 1);// Note A5 On - Velocity Value: 127 - MIDI Channel: 1
-	}
-	else{
-		MIDI.sendNoteOff(69, 0, 1);// Note A5 Off - Velocity Value: 0 - MIDI Channel: 1
-	}
-	
-	b_6_old = b_6_new;
-}
-
-if(b_7_new != b_7_old){
-	if(b_7_new == LOW){
-		
-		MIDI.sendNoteOn(71, 127, 1);// Note B5 On - Velocity Value: 127 - MIDI Channel: 1
-	}
-	else{
-		MIDI.sendNoteOff(71, 0, 1);// Note B5 Off - Velocity Value: 0 - MIDI Channel: 1
-	}
-	
-	b_7_old = b_7_new;
-}
-
-if(b_8_new != b_8_old){
-	if(b_8_new == LOW){
-		
-		MIDI.sendNoteOn(72, 127, 1);// Note C6 On - Velocity Value: 127 - MIDI Channel: 1
-	}
-	else{
-		MIDI.sendNoteOff(72, 0, 1);// Note C6 On - Velocity Value: 0 - MIDI Channel: 1
-	}
-	
-	b_8_old = b_8_new;
-}
-
+  // Read and process the 8 buttons
+  readButtons();
 }
