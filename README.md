@@ -5,7 +5,7 @@ What makes this project special is that it uses [time-division multiplexing](htt
 
 To overcome this limitation, this project uses a CD4067 multiplexer. Instead of dedicating one pin per potentiometer, the multiplexer allows all 16 potentiometers to be read using a single analog input pin. This is achieved through time-division multiplexing, where the Arduino rapidly switches between the 16 inputs, reading them one-by-one. Since the switching is fast, it appears as if all potentiometers are being read at once.
 
-This approach allows for efficient use of limited hardware resources while enabling support for a large number of input devices. In fact, by connecting a multiplexer to each of the 6 analog input pins of the Arduino, you could theoretically read up to 96 potentiometers simultaneously.
+This approach allows for efficient use of limited hardware resources while enabling support for a large number of input devices. In fact, by connecting a multiplexer to each of the 6 analog input pins of the Arduino, you could theoretically read up to 96 potentiometers simultaneously!
 
 
 ## Dependencies:
